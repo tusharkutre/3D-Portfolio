@@ -9,7 +9,7 @@ const Stars = (props) => {
   const [sphere] = useState(() => random.inSphere(new Float32Array(5000), { radius: 1.2 }));
 
   // useframe hook from react three fiber
-  useFrame((state, delta) => {
+  useFrame((delta) => {
     if (ref.current) {
       ref.current.rotation.x -= delta / 10; // rotate the stars in x direction
       ref.current.rotation.y -= delta / 10; // rotate the stars in y direction
