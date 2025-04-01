@@ -6,17 +6,18 @@ import * as random from "maath/random/dist/maath-random.esm";
 
 const Stars = (props) => {
   const ref = useRef();
-
-  const sphere = random.inSphere(new Float32Array(5000), { radius: 1.2 });
+  const [sphere] = useState(() => random.inSphere(new Float32Array(5000), { radius: 1.2 }));
 
   // useframe hook from react three fiber
-  useFrame((state,delta)=> {
-    ref.current.rotation.x -= delta / 10; // rotate the stars in x direction
-    ref.current.rotation.y -= delta / 10; // rotate the stars in y direction
-  })
+  useFrame((state, delta) => {
+    if (ref.current) {
+      ref.current.rotation.x -= delta / 10; // rotate the stars in x direction
+      ref.current.rotation.y -= delta / 10; // rotate the stars in y direction
+    }
+  });
 
   return (
-    <group rotation={[0,0,Math.PI / 4]}>
+    <group rotation={[0, 0, Math.PI / 4]}>
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
           size={0.005} // you can increase the size of stars here
