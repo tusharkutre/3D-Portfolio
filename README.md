@@ -3,10 +3,9 @@
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 # Features
-- [ ] Add a typing animation effect to the hero section,
-- [ ] Add a Dark Mode,
-- [ ] Add a responsive navbar,
-
+- [ ] Added a typing animation effect to the hero section,
+- [ ] Added a Dark Mode,
+- [ ] Added a responsive navbar,
 <!-- code optimizations -->
 - [ ] optimize the dark mode component rendered in the navbar.jsx
 - [ ] optimize the hero section
