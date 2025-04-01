@@ -1,6 +1,12 @@
-# React + Three.js + Tailwind + Framer Motion + Vite
+# My 3D Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Fully responsive and mobile-friendly portfolio website showcasing my skills and projects as a 3D frontend developer.
+
+# Tech Stack
+- React.js 
+- Three.js
+- TailwindCSS
+- Framer Motion
 
 # Features
 - [ ] Added a typing animation effect to the hero section,
