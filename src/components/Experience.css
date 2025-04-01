@@ -1,0 +1,19 @@
+@media (min-width: 768px) {
+    .vertical-timeline {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .vertical-timeline-element {
+      width: 45%; /* Adjust width as needed */
+      margin: 10px; /* Space between cards */
+    }
+  
+    .even {
+      align-self: flex-end; /* Align even indexed cards to the right */
+    }
+  
+    .odd {
+      align-self: flex-start; /* Align odd indexed cards to the left */
+    }
+  }
