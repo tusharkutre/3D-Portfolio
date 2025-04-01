@@ -6,13 +6,12 @@ import * as random from "maath/random/dist/maath-random.esm";
 
 const Stars = (props) => {
   const ref = useRef();
-  const [sphere] = useState(() => random.inSphere(new Float32Array(5000), { radius: 1.2 }));
+  const [sphere] = useState(() => random.inSphere(new Float32Array(5000), { radius: 1.5 }));
 
-  // useframe hook from react three fiber
-  useFrame((delta) => {
+  useFrame((state, delta) => {
     if (ref.current) {
-      ref.current.rotation.x -= delta / 10; // rotate the stars in x direction
-      ref.current.rotation.y -= delta / 10; // rotate the stars in y direction
+      ref.current.rotation.x -= delta / 10;
+      ref.current.rotation.y -= delta / 15;
     }
   });
 
@@ -20,8 +19,8 @@ const Stars = (props) => {
     <group rotation={[0, 0, Math.PI / 4]}>
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
-          size={0.005} // you can increase the size of stars here
-          color={"#f272c8"}
+          size={0.009}
+          color="#f272c8"
           transparent
           sizeAttenuation={true}
           depthWrite={false}
@@ -33,13 +32,11 @@ const Stars = (props) => {
 
 const StarsCanvas = () => {
   return (
-    // stars will hide behind the canvas
     <div className="w-full h-auto absolute inset-0 z-[-1]">
-      <Canvas camera={{ position: [0, 0, 1] }}>
+      <Canvas camera={{ position: [0, 0, 1], fov: 25 }}>
         <Suspense fallback={null}>
           <Stars />
         </Suspense>
-
         <Preload all />
       </Canvas>
     </div>
