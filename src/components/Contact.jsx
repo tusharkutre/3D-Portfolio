@@ -101,7 +101,7 @@ const Contact = () => {
         {/* form div */}
         <motion.div
           variants={slideIn("left", "tween", 0.2, 1)}
-          className="flex-[0.75] mx-5 bg-black-100 p-8 rounded-2xl"
+          className="flex-[0.75] mx-5 bg-black-100/80 p-8 rounded-2xl"
         >
           <p className={styles.heroSubText}>Get in touch</p>
           <h3 className={styles.heroHeadText}>Contact.</h3>
