@@ -13,7 +13,7 @@ export const Typing = () => {
         style={{
           display: 'inline-block',
           color: '#915eff',
-          fontSize: '2.5rem',
+          fontSize: '1.5rem',
         }}
       >
         Frontend Developer 🚀
