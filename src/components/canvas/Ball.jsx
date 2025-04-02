@@ -1,5 +1,5 @@
-import React, { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
+import React, { Suspense, useEffect, useRef } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
 import {
   Decal,
   Float,
@@ -12,10 +12,20 @@ import CanvasLoader from "../Loader";
 
 const Ball = (props) => {
   const [decal] = useTexture([props.imgUrl]);
+  const { gl } = useThree();
+
+  useEffect(() => {
+    return () => {
+      // Cleanup textures when component unmounts
+      if (decal) {
+        decal.dispose();
+      }
+    };
+  }, [decal]);
 
   return (
     <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>
-      <ambientLight intensity={1.25} />
+      <ambientLight intensity={0.25} />
       <directionalLight position={[0, 0, 0.05]} />
       <mesh castShadow receiveShadow scale={2.75}>
         <icosahedronGeometry args={[1, 1]} />
@@ -38,14 +48,39 @@ const Ball = (props) => {
 };
 
 const BallCanvas = ({ icon }) => {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      // Cleanup WebGL context when component unmounts
+      if (canvasRef.current) {
+        const gl = canvasRef.current.getContext('webgl');
+        if (gl) {
+          const loseContext = gl.getExtension('WEBGL_lose_context');
+          if (loseContext) loseContext.loseContext();
+        }
+      }
+    };
+  }, []);
+
   return (
     <Canvas
+      ref={canvasRef}
       frameloop='demand'
       dpr={[1, 2]}
-      gl={{ preserveDrawingBuffer: true }}
+      gl={{ 
+        preserveDrawingBuffer: true,
+        powerPreference: "low-power",
+        alpha: true,
+        antialias: false
+      }}
     >
       <Suspense fallback={<CanvasLoader />}>
-        <OrbitControls enableZoom={false} />
+        <OrbitControls 
+          enableZoom={false}
+          enablePan={false}
+          rotateSpeed={0.5}
+        />
         <Ball imgUrl={icon} />
       </Suspense>
 
