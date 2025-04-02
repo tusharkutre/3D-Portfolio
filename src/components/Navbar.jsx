@@ -46,12 +46,12 @@ const Navbar = ({ theme, handleThemeChange }) => {
           }}
         >
           <img src={logo} alt="logo" className="w-9 h-9 object-contain" />
-          <p className="text-white text-[18px] font-bold cursor-pointer  items-center xl:block md:hidden">
+          <div className="text-white text-[18px] font-bold cursor-pointer items-center xl:block md:hidden">
             <div className="flex">
               <span className="hidden md:block mx-2">Tushar |</span>
               <span className="hidden md:block">Frontend Developer</span>
             </div>
-          </p>
+          </div>
         </Link>
 
         {/* desktop menu for desktop view */}

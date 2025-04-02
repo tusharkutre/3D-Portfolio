@@ -46,7 +46,7 @@ const About = () => {
 
   const theme = useContext(themeContext);
 
-  console.log(theme);
+  // console.log(theme);
   
   return (
     <>

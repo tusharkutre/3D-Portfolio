@@ -28,7 +28,7 @@ const App = () => {
     setTheme(event.target.value);
   };
 
-  console.log(theme);
+  // console.log(theme);
 
   return (
     <BrowserRouter>
