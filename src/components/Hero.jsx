@@ -3,26 +3,16 @@ import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";
 import { Typing } from "./Typing";
 import { Suspense, useState, useEffect } from "react";
+import { useDevice } from '../context/DeviceContext';
 
 const Hero = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
+  const { isMobile } = useDevice();
   const [shouldRender3D, setShouldRender3D] = useState(true);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 500px)");
-    setIsMobile(mediaQuery.matches);
-
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-      // Disable 3D on very small screens
-      setShouldRender3D(!event.matches || window.innerWidth > 350);
-    };
-
-    // Initial check for very small screens
-    setShouldRender3D(!mediaQuery.matches || window.innerWidth > 350);
-
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
+    // Disable 3D on very small screens
+    setShouldRender3D(!isMobile || window.innerWidth > 350);
 
     // Set loading to false after content is likely loaded
     const timer = setTimeout(() => {
@@ -30,10 +20,9 @@ const Hero = () => {
     }, 2000);
 
     return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
       clearTimeout(timer);
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <section className={`relative w-full h-screen mx-auto bg-primary`}>
