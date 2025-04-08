@@ -32,7 +32,7 @@ const Navbar = ({ theme, handleThemeChange }) => {
       } w-full flex justify-between items-center py-4 fixed top-0 z-20 text-white ${
         scrollY > 50
           ? "backdrop-filter backdrop-blur-md"
-          : "bg-transparent backdrop-filter backdrop-blur-0"
+          : "bg-transparent backdrop-filter backdrop-blur-2xl"
       } transition-all duration-200`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
@@ -89,7 +89,7 @@ const Navbar = ({ theme, handleThemeChange }) => {
           <img
             src={toggle ? close : menu}
             alt="menu-icon"
-            className="w-[28px] h-[28px] object-contain cursor-pointer"
+            className="w-[28px] h-[28px] object-contain cursor-pointer "
             onClick={() => setToggle(!toggle)}
           />
 

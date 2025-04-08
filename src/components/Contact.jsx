@@ -9,6 +9,7 @@ import { styles } from "../styles";
 import { EarthCanvas } from "./canvas"; // Earth 3D model
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
+import Loading from "./Loading";
 
 const Contact = () => {
   const formRef = useRef();
@@ -132,7 +133,7 @@ const Contact = () => {
               className="bg-tertiary py-3 px-8 outline-none w-fit text-white font-semibold shadow-md hover:shadow-purple-600 rounded-xl"
             >
               {/* this will return either "true" : "false" based on conditional rendering */}
-              {loading ? "Sending..." : "Send"}
+              {loading ? <Loading/>: "Send"}
             </button>
           </form>
         </motion.div>
